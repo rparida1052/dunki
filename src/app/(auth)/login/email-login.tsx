@@ -5,7 +5,6 @@ import Navbar from "@/src/components/Navbar";
 import NextButton from "@/src/components/NextStepButton";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useRouter } from "expo-router";
-import { supabase } from "@/src/lib/supabase";
 import axios from "axios";
 import BACKEND_URL from "@/src/constants/url";
 import * as SecureStore from "expo-secure-store";

@@ -5,7 +5,6 @@ import Navbar from '@/src/components/Navbar';
 import NextButton from '@/src/components/NextStepButton';
 import { useRouter } from 'expo-router';
 import OTPInput from '@/src/components/OtpInput';
-import { supabase } from '@/src/lib/supabase';
 
 const VerifyOtpScreen = () => {
    const router = useRouter()

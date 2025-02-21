@@ -1,14 +1,13 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
-import { supabase } from "../lib/supabase";
-import { Session } from "@supabase/supabase-js";
+
 import { ActivityIndicator } from "react-native";
 import { Redirect } from "expo-router";
 
 type AuthData = {
-    session: Session | null;
+    session: any | null;
     loading: boolean;
     profile:any;
-    setSession: (session: Session | null) => void;
+    setSession: (session: any | null) => void;
     setProfile: (profile: any) => void;
 };
 
@@ -21,7 +20,7 @@ export const AuthContext = createContext<AuthData>({
 });
 
 export default function AuthProvider({ children }: {children: React.ReactNode}) {
-  const [session, setSession] = useState<Session | null>(null);
+  const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState(null)
   useEffect(() => {
@@ -29,22 +28,8 @@ export default function AuthProvider({ children }: {children: React.ReactNode}) 
     setLoading(true);
     const fetchSession = async () => {
       
-      const { data,error } = await supabase.auth.getSession();
-      console.log("Data authprovider",data.session);
-      if(!data.session || data.session === null){
-        setLoading(false);
-        return <Redirect href={"/(auth)/login/email-login"}/>
-      }
-      setSession(data.session);
-      if (session) {
-        // fetch profile
-        const { data } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", session.user.id)
-          .single();
-        setProfile(data || null);
-      }
+     
+    
       setLoading(false);
     };
 
