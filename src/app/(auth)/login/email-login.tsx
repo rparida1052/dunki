@@ -6,6 +6,9 @@ import NextButton from "@/src/components/NextStepButton";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useRouter } from "expo-router";
 import { supabase } from "@/src/lib/supabase";
+import axios from "axios";
+import BACKEND_URL from "@/src/constants/url";
+import * as SecureStore from "expo-secure-store";
 
 const EmailLoginScreen = () => {
   const router = useRouter();
@@ -13,15 +16,28 @@ const EmailLoginScreen = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   async function signInWithEmail() {
-    setLoading(true);
-    const { error, data } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-    console.log(data);
-    router.replace("/")
-    if (error) Alert.alert(error.message);
-    setLoading(false);
+    console.log("backedn url", `${BACKEND_URL}/login`);
+    try {
+      setLoading(true);
+      const resoponse = await axios.post(
+        `${BACKEND_URL}/login`,
+        {
+          email,
+          password,
+        }
+      );
+      
+      console.log(resoponse.data)
+      if(resoponse){
+       await SecureStore.setItemAsync("token", resoponse.data.token);
+        Alert.alert("Success", "You have successfully logged in");
+      }
+      router.replace("/");
+    } catch (error: any) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setLoading(false);
+    }
   }
   return (
     <View className="flex-1 items-start  bg-[#FAF3E1] mx-2">
@@ -48,8 +64,7 @@ const EmailLoginScreen = () => {
       />
       <Pressable
         onPress={() => router.push("/(auth)/login/email-signup")}
-        className="mt-5 w-full"
-      >
+        className="mt-5 w-full">
         <Text className="text-center">Don't have an account?signup</Text>
       </Pressable>
     </View>

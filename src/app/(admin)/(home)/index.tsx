@@ -5,26 +5,32 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import SquareButton from "@/src/components/SquareButton";
 import OrderCard from "@/src/components/OrderCard";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import { supabase } from "@/src/lib/supabase";
-
+import axios from "axios";
+import BACKEND_URL from "@/src/constants/url";
+import * as SecureStore from "expo-secure-store";
 const Index = () => {
   const [name, setName] = useState("");
   const [OtpInput, setOtpInput] = useState("");
   const [Orders, setOrders] = useState<any[] | null>(null);
+  const [token,setToken] = useState<string | null>("");
   const getData = async ()=>{
+      console.log("backend url", `${BACKEND_URL}/orders/today`);
     try{
-      const response = await supabase.from("order").select(`*,address(*)`);
-      console.log("orders for today",response.data)
-      if(response.error){
-        Alert.alert("Error",response.error.message)
-      }
+      const response = await axios.get(`${BACKEND_URL}/orders/today`);
+      console.log("Orders",response.data)
       setOrders(response.data)
     }catch(error){
       console.log(error)
     }
   }
+  const getToken = async () => {
+    const token = await SecureStore.getItemAsync("token");
+    console.log("Token", token);
+    setToken(token);
+  }
   useEffect(()=>{
     getData();
+    getToken();
   },[])
   return (
     <View className="bg-bg flex-1 p-4">
@@ -34,9 +40,9 @@ const Index = () => {
         <Feather name="filter" size={24} color="orange" />
       </View>
       <FlatList
-        data={Orders}
+        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
         renderItem={({ item }) => <OrderCard />}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.toString()}
         contentContainerStyle={{ paddingBottom: 20 }}
       />
 

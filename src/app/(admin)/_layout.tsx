@@ -18,11 +18,8 @@ const CustomTabBarButton = ({ children, onPress }: any) => (
 );
 
 export default function HomeLayout() {
-  const { session, loading } = useAuth();
-  console.log("session from home layout", session);
-  if (!session) {
-    return <Redirect href={"/(auth)/login/email-login"} />;
-  }
+
+  
   return (
     <Tabs
       screenOptions={{
