@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useRouter } from "expo-router";
@@ -10,15 +10,15 @@ const Navbar = ({ title }: NavbarProps) => {
   const router = useRouter();
 
   return (
-    <View className="flex-row  bg-[#FAF3E1] m-4">
-      <View className=" w-full mt-1 flex-row justify-start gap-10">
-        <Pressable onPress={()=>router.back()}>
-          <AntDesign name="arrowleft" size={28} color="black" />
-        </Pressable>
-        <Text className="text-3xl font-semibold text-center text-black ">
-          {title}
-        </Text>
-      </View>
+    <View className="flex-row items-center justify-between bg-bg p-4 z w-full mt-2">
+      <TouchableOpacity className="p-2">
+        <Image source={require("@/assets/images/ham-burger.png")} />
+      </TouchableOpacity>
+      {/* <Image source={require("@/assets/images/dunki-logo.png")} /> */}
+      <Text className="text-primary font-bold text-[50px]">Dunki</Text>
+      <TouchableOpacity className="p-2">
+        <Image source={require("@/assets/images/notification-icon.png")} />
+      </TouchableOpacity>
     </View>
   );
 };

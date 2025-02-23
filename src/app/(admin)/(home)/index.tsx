@@ -33,7 +33,7 @@ const Index = () => {
     getToken();
   },[])
   return (
-    <View className="bg-bg flex-1 p-4">
+    <View className="bg-bg flex-1 p-4 mb-10">
       {/* Orders For Today */}
       <View className="flex flex-row justify-between items-center mb-4">
         <Text className="text-4xl font-semibold">Orders For Today</Text>

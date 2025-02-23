@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import NextButton from '@/src/components/NextStepButton'
-import { useAuth } from '@/src/providers/AuthProviders'
 import { useRouter } from 'expo-router'
 
 const Profile = () => {
