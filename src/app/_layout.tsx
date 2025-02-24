@@ -24,7 +24,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("@/assets/fonts/Satoshi-Regular.otf"),
+    "SpaceMono": require("@/assets/fonts/Satoshi-Regular.otf"),
     ...FontAwesome.font,
   });
 

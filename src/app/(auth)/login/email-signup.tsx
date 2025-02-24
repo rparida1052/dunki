@@ -51,14 +51,14 @@ const EmailSignUpScreen = () => {
     }
   }
   if(loading){
-    return <View className="flex-1 items-center justify-center bg-[#FAF3E1] mx-2">
+    return <View className="flex-1 items-center justify-center bg-[#FAF3E1] mx-2 h-full w-full">
       <ActivityIndicator size="large" color="#0000ff" />
     </View>
   }
   return (
-    <ScrollView>
+    <ScrollView className="flex-1 bg-[#FAF3E1] mx-2">
       <View className="flex-1 items-start  bg-[#FAF3E1] mx-2">
-        <Navbar title="Fill out the details" />
+        <Navbar isnotificationVisible={false} />
         <Text className="text-2xl w-full text-center font-semibold mt-10 mb-10">
           Sign Up to create new account
         </Text>
@@ -103,7 +103,7 @@ const EmailSignUpScreen = () => {
           <Text className="text-center">Already have an account?sign in</Text>
         </Pressable>
       </View>
-    </ScrollView> 
+    </ScrollView>
   );
 };
 

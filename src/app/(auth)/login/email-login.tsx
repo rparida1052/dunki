@@ -40,7 +40,7 @@ const EmailLoginScreen = () => {
   }
   return (
     <View className="flex-1 items-start  bg-[#FAF3E1] mx-2">
-      <Navbar title="Fill out the details" />
+      <Navbar isnotificationVisible={false} />
       <Text className="text-2xl w-full text-center font-semibold mt-10 mb-10">
         Sign in to your exsting account
       </Text>

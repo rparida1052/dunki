@@ -9,7 +9,7 @@ const Profile = () => {
     router.replace("/(auth)/login/email-login")
   }
   return (
-    <View>
+    <View className='flex-1 items-center justify-center bg-bg'>
       <Text>Profile</Text>
       <NextButton onPress={logout} title='Logout'/>
     </View>

@@ -17,6 +17,8 @@ const HomeLayout = () => {
           headerShown: false,
         }}
       />
+    
+      
     </Stack>
   );
 }
