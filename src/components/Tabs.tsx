@@ -32,7 +32,7 @@ export default function TabSwitcher() {
             className={`font-semibold ${
               selectedTab === "manual" ? "text-white" : "text-orange-500"
             }`}>
-            Scan The Bill
+            Add Manually
           </Text>
         </TouchableOpacity>
       </View>

@@ -23,7 +23,11 @@ const Navbar = ({ isnotificationVisible = true }: NavbarProps) => {
         </TouchableOpacity>
       )}
       <View className="flex-1 items-center">
-        <Text className="text-primary font-bold text-[50px]">Dunki</Text>
+        <Text
+          className="text-primary font-bold text-[50px]"
+          style={{ fontFamily: "santoshi" }}>
+          Dunki
+        </Text>
       </View>
       {isnotificationVisible && (
         <Pressable className="p-2" onPress={() => router.push("/notification")}>
