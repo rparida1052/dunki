@@ -1,13 +1,13 @@
 import { Alert, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Feather from "@expo/vector-icons/Feather";
-
 import OrderCard from "@/src/components/OrderCard";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import axios from "axios";
 import BACKEND_URL from "@/src/constants/url";
 import * as SecureStore from "expo-secure-store";
 import PendingPaymentCard from "@/src/components/PendingPaymentCard";
+import { pendingOrderData, todayOrderData } from "@/src/constants/data";
 const Index = () => {
   const [name, setName] = useState("");
   const [OtpInput, setOtpInput] = useState("");
@@ -44,9 +44,9 @@ const Index = () => {
         <Feather name="filter" size={24} color="orange" />
       </View>
       <FlatList
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
-        renderItem={({ item }) => <OrderCard />}
-        keyExtractor={(item) => item.toString()}
+        data={todayOrderData}
+        renderItem={({ item }) => <OrderCard item={item}/>}
+        keyExtractor={(item) => item.name.toLocaleLowerCase()}
         contentContainerStyle={{ paddingBottom: 20 }}
       />
 
@@ -56,9 +56,9 @@ const Index = () => {
         <FontAwesome6 name="clock-rotate-left" size={24} color="black" />
       </View>
       <FlatList
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
-        renderItem={({ item }) => <PendingPaymentCard />}
-        keyExtractor={(item) => item.toString()}
+        data={pendingOrderData}
+        renderItem={({ item }) => <PendingPaymentCard item={item}/>}
+        keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{ paddingBottom: 20 }}
       />
     </View>

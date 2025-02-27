@@ -4,6 +4,8 @@ import FinanceCard from '@/src/components/FinanceCard'
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import UserCard from '@/src/components/UserCard';
+import { FlatList } from 'react-native';
+import { transactions } from '@/src/constants/data';
 const Stats = () => {
   return (
     <ScrollView className="bg-bg flex-1">
@@ -41,11 +43,11 @@ const Stats = () => {
             <MaterialIcons name="monetization-on" size={24} color="black" />
           </View>
           <View className='mb-20'>
-            <UserCard />
-            <UserCard />
-            <UserCard />
-            <UserCard />
-            <UserCard />
+            <FlatList
+            data={transactions}
+            renderItem={(item)=><UserCard name={item.item.name} amount={item.item.amount.toString()}/>}
+            keyExtractor={(item)=>item.id.toString()}
+            />
           </View>
         </View>
       </View>

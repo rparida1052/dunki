@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import ScanOrder from "./ScanOrder";
+import AddOrderScreen from "./AddOrderScreen";
 
 
 export default function TabSwitcher() {
@@ -42,7 +43,7 @@ export default function TabSwitcher() {
         {selectedTab === "scan" ? (
             <ScanOrder/>
         ) : (
-          <Text className="text-center text-lg">📝 Enter details manually</Text>
+          <AddOrderScreen/>
         )}
       </View>
     </View>

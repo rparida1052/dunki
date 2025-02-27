@@ -9,11 +9,13 @@ const Profile = () => {
     router.replace("/(auth)/login/email-login")
   }
   return (
-    <View className='flex-1 items-center justify-center bg-bg'>
-      <Text>Profile</Text>
-      <NextButton onPress={logout} title='Logout'/>
+    <View className="flex-1 items-center  bg-bg">
+      <Text className="text-3xl">Your Profile</Text>
+      <View className='mt-40'>
+        <NextButton onPress={logout} title="Logout" className="mt-30" />
+      </View>
     </View>
-  )
+  );
 }
 
 export default Profile

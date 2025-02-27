@@ -2,13 +2,21 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons"; // Icon library
 
-const UserCard = () => {
+interface UserCardProps {
+  name: string;
+  amount: string;
+}
+const UserCard = ({name,amount}: UserCardProps) => {
   return (
     <TouchableOpacity className="flex-row items-center justify-between bg-[#6E8B74] p-4 rounded-lg m-4">
       {/* User Info */}
       <View>
-        <Text className="text-white text-lg font-semibold">Swati Sethi</Text>
-        <Text className="text-white text-sm opacity-80">₹200</Text>
+        <Text className="text-white text-lg font-semibold">
+          {name}
+        </Text>
+        <Text className="text-white text-sm opacity-80">
+          ₹{amount}
+        </Text>
       </View>
 
       {/* Arrow Icon */}
