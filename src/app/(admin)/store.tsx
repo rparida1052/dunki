@@ -1,18 +1,30 @@
-import {
-  FlatList,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import React from "react";
+import { FlatList, Pressable, ScrollView, Text, View } from "react-native";
+import React, { useState } from "react";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import ProductCard from "@/src/components/ProductCard";
 import StockAlertCard from "@/src/components/StockAlertCard";
-import { groceryAlerts } from "@/src/constants/data";
+import { groceryAlerts, vegetableStock } from "@/src/constants/data";
 
 const Store = () => {
+  // Managing state for stock alerts
+  const [stockAlerts, setStockAlerts] = useState(groceryAlerts);
+
+  // Managing state for each vegetable quantity
+  const [stock, setStock] = useState(
+    vegetableStock.reduce(
+      (acc, veg) => ({ ...acc, [veg.name]: veg.quantity }),
+      {}
+    )
+  );
+
+  // Function to update quantity
+  const updateQuantity = (name: string, newQuantity: number) => {
+    setStock((prevStock) => ({
+      ...prevStock,
+      [name]: newQuantity,
+    }));
+  };
+  
   return (
     <ScrollView
       className="flex-1 bg-bg"
@@ -31,9 +43,17 @@ const Store = () => {
 
       {/* Product Grid */}
       <FlatList
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-        renderItem={() => <ProductCard />}
-        keyExtractor={(item) => item.toString()}
+        data={vegetableStock}
+        renderItem={({ item }) => (
+          <ProductCard
+            name={item.name}
+            quantity={stock[item.name]}
+            setQuantity={(newQuantity) =>
+              updateQuantity(item.name, newQuantity)
+            }
+          />
+        )}
+        keyExtractor={(item) => item.name}
         numColumns={2}
         columnWrapperStyle={{
           justifyContent: "space-between",
@@ -46,8 +66,8 @@ const Store = () => {
       <View className="m-4">
         <Text className="text-4xl font-bold mb-2">Recommendation</Text>
         <FlatList
-          data={groceryAlerts}
-          renderItem={(item) => <StockAlertCard message={item.item.message}/>}
+          data={stockAlerts}
+          renderItem={({ item }) => <StockAlertCard message={item.message} />}
           keyExtractor={(item) => item.id.toString()}
           scrollEnabled={false} // Ensures all items render properly inside ScrollView
         />
@@ -57,5 +77,3 @@ const Store = () => {
 };
 
 export default Store;
-
-const styles = StyleSheet.create({});

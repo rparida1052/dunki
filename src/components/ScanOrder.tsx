@@ -4,7 +4,7 @@ import React from 'react'
 const ScanOrder = () => {
   return (
     <View>
-      <Text>ScanOrder</Text>
+      <Text className='text-center text-primary text-2xl font-semibold'>Scan order page</Text>
     </View>
   )
 }

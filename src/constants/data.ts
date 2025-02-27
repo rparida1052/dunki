@@ -144,3 +144,57 @@ export const transactions = [
     date: "February 27, 2025",
   },
 ];
+
+
+export const vegetableStock = [
+  {
+    id: 1,
+    name: "Tomato",
+    quantity: 150, // in kg
+  },
+  {
+    id: 2,
+    name: "Potato",
+    quantity: 300, // in kg
+  },
+  {
+    id: 3,
+    name: "Carrot",
+    quantity: 120, // in kg
+  },
+  {
+    id: 4,
+    name: "Onion",
+    quantity: 250, // in kg
+  },
+  {
+    id: 5,
+    name: "Spinach",
+    quantity: 80, // in bunches
+  },
+  {
+    id: 6,
+    name: "Cabbage",
+    quantity: 90, // in pieces
+  },
+  {
+    id: 7,
+    name: "Bell Pepper",
+    quantity: 110, // in kg
+  },
+  {
+    id: 8,
+    name: "Broccoli",
+    quantity: 60, // in pieces
+  },
+  {
+    id: 9,
+    name: "Cauliflower",
+    quantity: 75, // in pieces
+  },
+  {
+    id: 10,
+    name: "Cucumber",
+    quantity: 140, // in kg
+  },
+];
